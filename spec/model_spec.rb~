@@ -1,0 +1,10 @@
+require 'spec_helper'
+
+describe Movie do
+  describe 'searched by the same director' do
+    it 'as Star Wars' do
+      Movie.should_receive(:a).with('Star Wars')
+      Movie.a('b')
+    end
+  end
+end

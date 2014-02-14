@@ -1,0 +1,20 @@
+class Movie < ActiveRecord::Base
+  def self.all_ratings
+    %w(G PG PG-13 NC-17 R)
+  end
+
+  #def self.similar(id)
+  #  movie = Movie.find(id)
+  #  Movie.find_all_by_director(movie.director)
+  #end
+
+  def self.similar(id)
+    movie = Movie.find id
+    unless movie.director.blank?
+      Movie.find_all_by_director movie.director
+    else
+      raise Movie::NoDirectorError, "'#{movie.title}' has no director info"
+    end
+  end
+ 
+end
